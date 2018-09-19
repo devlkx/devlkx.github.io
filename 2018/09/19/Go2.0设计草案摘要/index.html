@@ -97,11 +97,11 @@
 <meta name="description" content="前段时间 Go 官方宣布了2.0大版本的更新，并发布设计草案，对有关错误处理和泛型更改的设计进行公开讨论。这篇文章就围绕草案提出的三个主题分别进行描述和总结。 错误处理Go 被人诟病的一个地方在于它冗长重复的错误处理代码： 1234567891011121314151617181920func CopyFile(src, dst string) error &amp;#123;	r, err := os.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go 2.0 设计草案摘要">
-<meta property="og:url" content="http://yoursite.com/2018/09/19/go2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/09/19/Go2.0设计草案摘要/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="前段时间 Go 官方宣布了2.0大版本的更新，并发布设计草案，对有关错误处理和泛型更改的设计进行公开讨论。这篇文章就围绕草案提出的三个主题分别进行描述和总结。 错误处理Go 被人诟病的一个地方在于它冗长重复的错误处理代码： 1234567891011121314151617181920func CopyFile(src, dst string) error &amp;#123;	r, err := os.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-19T06:18:40.175Z">
+<meta property="og:updated_time" content="2018-09-19T06:39:21.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 2.0 设计草案摘要">
 <meta name="twitter:description" content="前段时间 Go 官方宣布了2.0大版本的更新，并发布设计草案，对有关错误处理和泛型更改的设计进行公开讨论。这篇文章就围绕草案提出的三个主题分别进行描述和总结。 错误处理Go 被人诟病的一个地方在于它冗长重复的错误处理代码： 1234567891011121314151617181920func CopyFile(src, dst string) error &amp;#123;	r, err := os.">
@@ -133,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/19/go2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/19/Go2.0设计草案摘要/"/>
 
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/19/go2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/19/Go2.0设计草案摘要/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -358,7 +358,7 @@
 <p>新的代码保留了 Go 一贯简洁易懂的风格，但这个例子比较特别，因为它并不需要对参数的类型做约束，我们看看另一个例子，获取数组值的总和：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract Addable(t T) &#123;</span><br><span class="line">	t + t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sum</span><span class="params">(<span class="keyword">type</span> T Addable)</span><span class="params">(x []T)</span> <span class="title">T</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> total T</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> x &#123;</span><br><span class="line">		total += v</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 Go 里并不是所有类型的值都能使用操作符‘+’进行相加，因此为了解决泛型约束的问题，设计草案引入了 <code>contract</code> 关键字，一个 contract 相当于一个函数体，包含了类型必须支持的操作，编译器能在编译期进行检查，确保所有泛型值的操作都满足约束，避免运行时错误。</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>这篇文章的内容都是基于 <a href="https://go.googlesource.com/proposal/+/master/design/go2draft.md" target="_blank" rel="noopener">Go 2设计草案</a>，正式版发布后可能会有改动，以正式版为准。希望对你有所帮助。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>这篇文章的内容都是基于 <a href="https://go.googlesource.com/proposal/+/master/design/go2draft.md" target="_blank" rel="noopener">Go 2设计草案</a>，正式版发布后可能会有改动，以正式版为准。</p>
 
       
     </div>
@@ -379,6 +379,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/23/通过github搭建个人博客/" rel="next" title="通过 GitHub 搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 通过 GitHub 搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
@@ -452,7 +468,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
